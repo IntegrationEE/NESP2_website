@@ -1,6 +1,32 @@
-Website hosting the NESP2 webmap
+# Nigeria Se4all Main Website including the Webmap 
+Nigeria SE4ALL offers the most accurate data and latest tools that empower better electrification planning in Nigeria
 
-[![Build Status](https://travis-ci.com/rl-institut/NESP2_website.svg?branch=dev)](https://travis-ci.com/rl-institut/NESP2_website)
+## Public instances
+- [Nigeria SE4ALL Website](https://nigeriase4all.gov.ng/)
+
+## Financed By
+- [Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ)](https://www.giz.de/)
+- [Federal Ministry of Power, Works and Housing ](http://www.power.gov.ng)
+- under the Nigerian Energy Support Programme
+- (Co-funded) by the German Government and the European Union
+
+## Authors and Developed By
+- [INTEGRATION environment & energy](http://www.integration.org/)
+- [Reiner Lemoine Institut gGmbH](www.reiner-lemoine-institut.de)
+- [Alsino Skowronnek](www.alsino.io)
+
+## Feature List:
+- detailed project overview of nigerian rural electrification under the NESP
+- Webmap on three different levels (national, state, villate) on rural electrification 
+- fully dynamic filters on all datasets
+- Ground-Truth electrification/building data  
+- download all public datasets via a dedicated Geonode instance
+
+## Architecture:
+- Python/Flask 
+- Leavelet
+- Tilelayer setup with dedicated Tileserver
+- Bootstrap
 
 ## Getting started
 
@@ -23,23 +49,3 @@ Start the app with
 ```
 python3 index.py
 ```
-
-## Deploy on docker (instructions for ubuntu)
-0. create a `app/instance/config.py` file with the line `SECRET_KEY = '<your secret key>'`.
-If needed, you can generate a key with `python -c 'import os; print(os.urandom(16))'`)
-1. install [docker](https://docs.docker.com/v17.09/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce-1) and [docker-compose](https://docs.docker.com/compose/install/)
-
-### With simple Dockerfile
-1. `sudo docker build -t nesp2_website .` you can use the `--build-arg` command to provide the postgresql login infos, or store 
-   it in a file and run `sudo docker build -t nesp2_website $(<docker-inputs.txt) .`
-2. `sudo docker run -rm -p 5000:5000 nesp2_website`
-3. Access the website at localhost:5000
-4. to stop the service simply `ctrl + c` in the terminal from point 2.
-### With docker-compose
-0. Define the database env variable either in your terminal or in `.env` file (docker-compose will look into it)
-1. `sudo docker-compose up -d --build`
-2. your app is available at `0.0.0.0:5000` or `localhost:5000`
-3. Access the website at localhost:5000
-4. to stop the service `sudo docker-compose down`
-
-In case something goes wrong, use `sudo docker logs nesp2_website` to check the logs
